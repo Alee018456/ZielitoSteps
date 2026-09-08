@@ -1,0 +1,298 @@
+
+/* ================================
+   CONFIGURACIÓN GENERAL
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0f0f0f;
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+
+/* ================================
+   TARJETA
+================================ */
+
+.tarjeta {
+    width: 100%;
+    max-width: 380px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+
+    padding: 26px 22px;
+
+    background: #161616;
+    border: 1px solid #292929;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.titulo {
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+}
+
+
+/* ================================
+   PASOS
+================================ */
+
+.paso {
+    padding-top: 18px;
+    border-top: 1px solid #262626;
+}
+
+.paso:first-of-type {
+    padding-top: 0;
+    border-top: none;
+}
+
+.paso-numero {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 8px;
+
+    background: #ffffff;
+    color: #000000;
+
+    border-radius: 30px;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.paso h2 {
+    font-size: 17px;
+    margin-bottom: 4px;
+}
+
+.paso > p {
+    color: #999999;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+
+/* ================================
+   PASO 1 - ENLACE
+================================ */
+
+.enlace-box {
+    display: flex;
+    gap: 8px;
+}
+
+.enlace-input {
+    flex: 1;
+    min-width: 0;
+
+    padding: 11px 12px;
+
+    background: #1a1a1a;
+    border: 1px solid #333333;
+    border-radius: 8px;
+
+    color: #ffffff;
+    font-size: 13px;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+
+    padding: 11px 18px;
+
+    background: #ffffff;
+    color: #000000;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        opacity 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.mensaje-copiado {
+    margin-top: 10px;
+
+    color: #4ade80;
+    font-weight: 700;
+    font-size: 13px;
+
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: 0.25s;
+}
+
+.mensaje-copiado.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ================================
+   PASO 2 - GIF
+================================ */
+
+.gif-box {
+    border: 1px solid #292929;
+    border-radius: 10px;
+    overflow: hidden;
+
+    background: #1a1a1a;
+}
+
+.gif-tutorial {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+/* ================================
+   PASO 3 - CONTADOR
+================================ */
+
+.paso-contador {
+    text-align: center;
+}
+
+.contador-caja {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 6px auto 0;
+    padding: 16px 30px;
+
+    background: radial-gradient(circle at 30% 20%, #2a1140 0%, #0b0714 75%);
+    border-radius: 14px;
+
+    box-shadow:
+        0 0 0 1px rgba(232, 121, 249, 0.45),
+        0 0 18px rgba(217, 70, 239, 0.55),
+        0 0 42px rgba(56, 189, 248, 0.3),
+        inset 0 0 18px rgba(217, 70, 239, 0.15);
+
+    animation: caja-pulso 1.8s ease-in-out infinite;
+}
+
+.contador-numero {
+    font-family: "Orbitron", "Courier New", monospace;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    font-variant-numeric: tabular-nums;
+
+    background: linear-gradient(90deg, #f472b6, #c084fc, #60a5fa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    text-shadow:
+        0 0 8px rgba(244, 114, 182, 0.85),
+        0 0 18px rgba(192, 132, 252, 0.55),
+        0 0 32px rgba(96, 165, 250, 0.35);
+}
+
+.contador-numero.listo {
+    background: linear-gradient(90deg, #4ade80, #34d399, #22d3ee);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    text-shadow:
+        0 0 10px rgba(74, 222, 128, 0.9),
+        0 0 24px rgba(52, 211, 153, 0.6),
+        0 0 40px rgba(34, 211, 238, 0.4);
+}
+
+.contador-mensaje {
+    margin-top: 10px;
+
+    color: #4ade80;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+@keyframes caja-pulso {
+    0%, 100% {
+        box-shadow:
+            0 0 0 1px rgba(232, 121, 249, 0.45),
+            0 0 18px rgba(217, 70, 239, 0.55),
+            0 0 42px rgba(56, 189, 248, 0.3),
+            inset 0 0 18px rgba(217, 70, 239, 0.15);
+    }
+    50% {
+        box-shadow:
+            0 0 0 1px rgba(232, 121, 249, 0.65),
+            0 0 26px rgba(217, 70, 239, 0.75),
+            0 0 56px rgba(56, 189, 248, 0.45),
+            inset 0 0 22px rgba(217, 70, 239, 0.25);
+    }
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+.footer {
+    padding-top: 18px;
+    border-top: 1px solid #262626;
+
+    text-align: center;
+}
+
+.footer p {
+    color: #666666;
+    font-size: 11px;
+}
+
+
+/* ================================
+   MÓVILES
+================================ */
+
+@media (max-width: 420px) {
+    .tarjeta {
+        max-width: 100%;
+        padding: 20px 16px;
+    }
+
+    .enlace-box {
+        flex-direction: column;
+    }
+}

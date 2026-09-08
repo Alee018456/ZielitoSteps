@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Zielito Steps</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+    <main class="tarjeta">
+
+        <h1 class="titulo">Zielito Steps</h1>
+
+        <section class="paso">
+            <span class="paso-numero">Paso 1</span>
+            <h2>Copiá el enlace</h2>
+            <p>Tocá el botón para copiar el enlace.</p>
+
+            <div class="enlace-box">
+                <input type="text" id="enlaceInput" class="enlace-input" value="https://zielitotips1.como-saber.com/" readonly>
+                <button id="botonCopiar" onclick="copiarEnlace()">Copiar</button>
+            </div>
+            <p id="mensajeCopiado" class="mensaje-copiado">¡Enlace copiado!</p>
+        </section>
+
+        <section class="paso">
+            <span class="paso-numero">Paso 2</span>
+            <h2>Mirá cómo usarlo</h2>
+            <p>Seguí los mismos pasos que se muestran acá.</p>
+
+            <div class="gif-box">
+                <img src="imagenes/tutorial.gif" alt="Tutorial de cómo usar el enlace" class="gif-tutorial">
+            </div>
+        </section>
+
+        <section class="paso paso-contador">
+            <span class="paso-numero">Paso 3</span>
+            <h2>Entrá y esperá</h2>
+            <p>Entrá y esperá a que este contador llegue a 0.</p>
+
+            <div class="contador-caja">
+                <div class="contador-numero" id="contador">05:00</div>
+            </div>
+
+            <p id="contadorMensaje" class="contador-mensaje" hidden>¡Listo, ya podés continuar!</p>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 Zielito Steps</p>
+        </footer>
+
+    </main>
+
+    <script>
+        const ENLACE = "https://zielitotips1.como-saber.com/";
+        const DURACION_SEGUNDOS = 5 * 60;
+
+        function mostrarMensajeCopiado() {
+            const mensaje = document.getElementById("mensajeCopiado");
+            mensaje.classList.add("mostrar");
+            setTimeout(function () {
+                mensaje.classList.remove("mostrar");
+            }, 2000);
+        }
+
+        function copiarEnlace() {
+            const input = document.getElementById("enlaceInput");
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(ENLACE).then(mostrarMensajeCopiado, function () {
+                    input.select();
+                    document.execCommand("copy");
+                    mostrarMensajeCopiado();
+                });
+            } else {
+                input.select();
+                document.execCommand("copy");
+                mostrarMensajeCopiado();
+            }
+        }
+
+        function iniciarContador(segundosTotales) {
+            const elemento = document.getElementById("contador");
+            const mensaje = document.getElementById("contadorMensaje");
+            let segundosRestantes = segundosTotales;
+
+            function actualizar() {
+                const minutos = Math.floor(segundosRestantes / 60);
+                const segundos = segundosRestantes % 60;
+                elemento.textContent =
+                    String(minutos).padStart(2, "0") + ":" + String(segundos).padStart(2, "0");
+
+                if (segundosRestantes <= 0) {
+                    clearInterval(intervalo);
+                    elemento.textContent = "00:00";
+                    elemento.classList.add("listo");
+                    mensaje.hidden = false;
+                    return;
+                }
+                segundosRestantes--;
+            }
+
+            actualizar();
+            const intervalo = setInterval(actualizar, 1000);
+        }
+
+        iniciarContador(DURACION_SEGUNDOS);
+    </script>
+
+</body>
+</html>
